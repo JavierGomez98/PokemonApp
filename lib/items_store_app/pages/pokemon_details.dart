@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:pokemon_app/animations/shake_transition/main_shake_transition.dart';
 import 'package:pokemon_app/items_store_app/model/pokemon_bloc.dart';
 import 'package:pokemon_app/items_store_app/model/pokemon_item.dart';
-import 'package:pokemon_app/items_store_app/pages/item_shopping_cart.dart';
-import 'package:pokemon_app/shake_transition/main_shake_transition.dart';
+import 'package:pokemon_app/items_store_app/pages/item_catch_cart.dart';
 import 'package:provider/provider.dart';
 
 class PokemonDetails extends StatelessWidget {
@@ -97,6 +97,7 @@ class PokemonDetails extends StatelessWidget {
     WidgetsBinding.instance!.addPostFrameCallback((_) {
       notifierBottomBarVisible.value = true;
     });
+    
     final pokemonBloc = Provider.of<PokemonBloc>(context);
     return Scaffold(
       appBar: AppBar(
@@ -174,9 +175,6 @@ class PokemonDetails extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           for ( var i in pokemon.evolutions ) _PokemonEvolutions(name: i)
-                          // _PokemonEvolutions(name: pokemon.evolutions[0]),
-                          // _PokemonEvolutions(name: pokemon.evolutions[1]),
-                          // _PokemonEvolutions(name: pokemon.evolutions[2]),
                         ],
                       ),
                     ),

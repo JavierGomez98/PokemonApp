@@ -81,38 +81,68 @@ class PokemonItem extends StatelessWidget {
               Positioned(
                 bottom: 20,
                 right: 20,
-                child: SizedBox(
-                  child: Container(
-                    width: 70,
-                    height: typeHeigth*(pokemon.types.length+1)+2,
-                    child: ListView.separated(
-                      itemCount: pokemon.types.length,
-                      itemBuilder: (_, index){
-                        return Container(
-                          width: 60,
-                          height: typeHeigth,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            color: Color(pokemon.types[index].color),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(5.0),
-                            child: Center(
-                              child: Text(
-                                pokemon.types[index].name,
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
+                child: Column(
+                  children: [
+                    for ( var type in pokemon.types ) 
+                      Column(
+                        children: [
+                          Container(
+                            width: 60,
+                            height: typeHeigth,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: Color(type.color),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: Center(
+                                child: Text(
+                                  type.name,
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                        );
-                      },
-                      separatorBuilder: (_,__) => SizedBox(height: 2,),
-                    ),
-                  ),
+                          const SizedBox(height: 2,)
+                        ],
+                      ),
+                  ],
                 ),
+                // child: SizedBox(
+                //   child: Container(
+                //     width: 70,
+                //     height: typeHeigth*(pokemon.types.length+1)+2,
+                //     child: ListView.separated(
+                //       itemCount: pokemon.types.length,
+                //       itemBuilder: (_, index){
+                //         return Container(
+                //           width: 60,
+                //           height: typeHeigth,
+                //           decoration: BoxDecoration(
+                //             borderRadius: BorderRadius.circular(20),
+                //             color: Color(pokemon.types[index].color),
+                //           ),
+                //           child: Padding(
+                //             padding: const EdgeInsets.all(5.0),
+                //             child: Center(
+                //               child: Text(
+                //                 pokemon.types[index].name,
+                //                 style: TextStyle(
+                //                   fontWeight: FontWeight.bold,
+                //                   color: Colors.white,
+                //                 ),
+                //               ),
+                //             ),
+                //           ),
+                //         );
+                //       },
+                //       separatorBuilder: (_,__) => SizedBox(height: 2,),
+                //     ),
+                //   ),
+                // ),
 
                 
               ),

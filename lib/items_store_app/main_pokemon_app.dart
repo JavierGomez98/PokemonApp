@@ -97,6 +97,13 @@ class ItemsStoreHome extends StatelessWidget {
                         Expanded(
                           child: Icon(Icons.favorite_border),
                         ),
+                        // Expanded(
+                        //   child: FloatingActionButton(
+                        //     backgroundColor: Colors.transparent,
+                        //     elevation: 0,
+                        //     onPressed: (){ print('asd'); },
+                        //     child: Icon(Icons.favorite_border, color: Colors.black,)),
+                        // ),
                         Expanded(
                           child: Center(
                             child: CircleAvatar(

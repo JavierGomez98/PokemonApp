@@ -6,7 +6,7 @@ class PokemonBloc extends ChangeNotifier {
   void stateFavorite(pokedexNumber) {
     pokemons.forEach((element) {
       if(element.pokedexNumber == pokedexNumber)
-        element.favorite = !element.favorite;
+        element.stateFavorite();
     });
     notifyListeners();
   }

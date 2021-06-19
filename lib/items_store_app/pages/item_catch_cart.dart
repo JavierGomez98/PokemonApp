@@ -1,13 +1,14 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:pokemon_app/animations/shake_transition/main_shake_transition.dart';
 import 'package:pokemon_app/items_store_app/model/pokemon_item.dart';
-import 'package:pokemon_app/shake_transition/main_shake_transition.dart';
 
 const _buttonSizeWidth = 160.0;
 const _buttonSizeHeight = 60.0;
 const _buttonCircleSize = 60.0;
 const _finalImageSize = 30.0;
 const _imageSize = 150.0;
+const _PokeballSize = 55.0;
 
 class ItemShoppingCart extends StatefulWidget {
   final Pokemon pokemon;
@@ -21,6 +22,8 @@ class ItemShoppingCart extends StatefulWidget {
 class _ItemShoppingCartState extends State<ItemShoppingCart>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
+  late Animation _animationResizePB;
+  late Animation _animationResizePBB;
   late Animation _animationResize;
   late Animation _animationMovement1;
   late Animation _animationMovement2;
@@ -29,6 +32,24 @@ class _ItemShoppingCartState extends State<ItemShoppingCart>
   void initState() {
     _controller = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 1750));
+    _animationResizePBB = Tween(
+      begin: 1.0,
+      end: 0.0,
+    ).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: Interval(0.0, 0.01,),
+      ),
+    );
+    _animationResizePB = Tween(
+      begin: 1.0,
+      end: 0.0,
+    ).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: Interval(0.01, 0.35,),
+      ),
+    );
     _animationResize = Tween(
       begin: 1.0,
       end: 0.0,
@@ -63,16 +84,6 @@ class _ItemShoppingCartState extends State<ItemShoppingCart>
         ),
       ),
     );
-    // .animate(
-    //   CurvedAnimation(
-    //     parent: _controller,
-    //     curve: Interval(
-    //       0.3,
-    //       0.9,
-    //       curve: Curves.elasticIn,
-    //     ),
-    //   ),
-    // );
 
     _controller.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
@@ -301,13 +312,13 @@ class _ItemShoppingCartState extends State<ItemShoppingCart>
                                     BorderRadius.all(Radius.circular(30)),
                               ),
                               child: Padding(
-                                padding: const EdgeInsets.all(12.0),
+                                padding: EdgeInsets.all( (12.0 * _animationResizePBB.value).clamp(0, 12) ),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Image.asset(
                                       'assets/pokemons/pokeball.png',
-                                      height: 30,
+                                      height: (30.0 * _animationResizePB.value).clamp(_PokeballSize , _PokeballSize),
                                     ),
                                     if (_animationResize.value == 1) ...[
                                       const SizedBox(width: 10),

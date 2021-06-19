@@ -24,6 +24,10 @@ class Pokemon {
     required this.cp,
     this.favorite = false
   });
+
+  void stateFavorite(){
+    favorite = !favorite;
+  }
 }
 
 class Type {
